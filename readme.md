@@ -2,30 +2,9 @@
 
 ![Tanto Logo](https://image.ibb.co/gHzsDb/logo.png "Logo Title Text")
 
-## Team
-[Mizuki Zenta](https://github.com/MizukiZ/)
-
-[Chy Meng](https://github.com/chymeng/)
-
-[Tomomi Oki](https://github.com/okichan/)
-
-
 ## Useful Links
 
-[Website Links (React App)](https://tanto.netlify.com)
-
-* [Signin](https://tanto.netlify.com/signin)
-* [Signout](https://tanto.netlify.com/signup)
-* [Sales](https://tanto.netlify.com/sales)
-* [New sales](https://tanto.netlify.com/new-sales)
-* [Products](https://tanto.netlify.com/products)
-* [Customers](https://tanto.netlify.com/customers)
-* [Notifications](https://tanto.netlify.com/notifications)
-* [Daily reports](https://tanto.netlify.com/report-daily)
-* [Weekly reports](https://tanto.netlify.com/report-weekly)
-* [Customers traffic](https://tanto.netlify.com/customer-traffic)
-
-[Production api (React App)](https://tanto-api.now.sh/products)
+[Website Link](https://tanto.netlify.com/signin)
 
 [Presentation Slides](https://docs.google.com/presentation/d/1__HwmAxxGbnhNuGW9O3zxrAPKJOJ2siq-zzJoENJaEM/edit#slide=id.p)
 
@@ -45,11 +24,9 @@
 
 ## Project Brief
 
-You are to design, build, deploy, and present an application built for a real
-world customer. Find a business or organisation nearby to Coder Academy to build
-an application for. Meet with the business owner or organisation manager to find
-out what challenges they face. Find a problem that you can solve with an
-application and present your ideas to the client.
+You are to design, build, deploy, and present an application built for a real world customer.
+Find a business or organisation nearby to Coder Academy to build an application for.
+Meet with the business owner or organisation manager to find out what challenges they face. Find a problem that you can solve with an application and present your ideas to the client.
 
 [Table of Contents](#table-of-contents)
 
@@ -64,18 +41,13 @@ application and present your ideas to the client.
 
 ## About the Company
 
-Tanto sells expertly crafted Suisin knives sourced from 10th generation sword
-makers from legendary Sakai, the heart and soul of traditional Japanese knife
-production.
+Tanto sells expertly crafted Suisin knives sourced from 10th generation sword makers from legendary Sakai, the heart and soul of traditional Japanese knife production.
 
 [Table of Contents](#table-of-contents)
 
 ## Business Problem
 
-The current problem faced by Akira, owner of Japanese knife shop Tanto is all
-reporting is done manually via Microsoft Excel. This process can be both
-time-consuming and tedious, and time management is of the essence when running a
-business. These are some of the processes that are done via Excel
+The current problem faced by Akira, owner of Japanese knife shop Tanto is all reporting is done manually via Microsoft Excel. This process can be both time-consuming and tedious, and time management is of the essence when running a business. These are some of the processes that are done via Excel
 
 * Customer Traffic
 * Stock Lists
@@ -89,10 +61,7 @@ business. These are some of the processes that are done via Excel
 
 ## Solution
 
-The solution that we have come up with collectively is an application that can
-automate most of the work that Akira does on a weekly basis manually on Excel.
-Create a user interface which is elegant and straightforward where any user such
-as an employee can use.
+The solution that we have come up with collectively is an application that can automate most of the work that Akira does on a weekly basis manually on Excel. Create a user interface which is elegant and straightforward where any user such as an employee can use.
 
 [Table of Contents](#table-of-contents)
 
@@ -100,9 +69,7 @@ as an employee can use.
 
 [Trello](https://trello.com/b/uPW701tC/term-3-major-project-tanto-knife-store)
 
-Our user stories in regards to the application can be view on our public board
-on Trello. It also includes the NPMs we decided to use and some other useful
-links in regards to the project
+Our user stories in regards to the application can be view on our public board on Trello. It also includes the NPMs we decided to use and some other useful links in regards to the project
 
 ## User Flow Diagrams
 
@@ -114,8 +81,7 @@ links in regards to the project
 
 [Figma](https://www.figma.com/file/dtRqWfQ8bnwpx6a8yMAm6z5V/Term-3-major-project)
 
-For our wireframes and initial designs, this can be found in the link about in
-our Figma
+For our wireframes and initial designs, this can be found in the link about in our Figma
 
 [Table of Contents](#table-of-contents)
 
@@ -129,37 +95,20 @@ our Figma
 
 ## Collaboration as a team
 
-We all thoroughly enjoyed working as a team. All of us had different strengths
-and weaknesses but work through them together. All decisions were made as a team
-such as wireframes, implementation of features and how to approach challenges.
-We learned how to use Github effectively throughout the project with minimal
-conflicts.
+We all thoroughly enjoyed working as a team. All of us had different strengths and weaknesses but work through them together. All decisions were made as a team such as wireframes, implementation of features and how to approach challenges.
+We learned how to use Github effectively throughout the project with minimal conflicts.
 
 ## Challenges
 
-* When we first did our two-day hackathon as a group, we used Slack as our
-  primary source of combining code through copy and paste. This time around we
-  decided to use Github because of the large-scale code that had to be merged
-  between team members. Being our first time attempting this, we were cautious
-  in our merges with conflicts.
+* When we first did our two-day hackathon as a group, we used Slack as our primary source of combining code through copy and paste. This time around we decided to use Github because of the large-scale code that had to be merged between team members. Being our first time attempting this, we were cautious in our merges with conflicts.
 
-* At first, we struggled with data manipulation with nested arrays within
-  objects which did take time to master however dealing with it so often has
-  enhanced our skills.
+* At first, we struggled with data manipulation with nested arrays within objects which did take time to master however dealing with it so often has enhanced our skills.
 
-* Business owners and programmers have different thought processes which we came
-  to realise through many situations where there were differing views on
-  features.
+* Business owners and programmers have different thought processes which we came to realise through many situations where there were differing views on features.
 
 ## Future plans
 
-After initially seeing our deployed application, the client was delighted with
-the result and wanted use to implement more features. We received an email with
-even more request and even though we were able to build some of them, there are
-still a few we are planning on implementing. Some of the planned future works
-include automated email services when necessary, more intensive reports that can
-be manipulated and customised, statistical data in regards to their website and
-possibly connecting with the hotel database for the more natural recording of
-transactions.
+After initially seeing our deployed application, the client was delighted with the result and wanted use to implement more features. We received an email with even more request and even though we were able to build some of them, there are still a few we are planning on implementing.
+Some of the planned future works include automated email services when necessary, more intensive reports that can be manipulated and customised, statistical data in regards to their website and possibly connecting with the hotel database for the more natural recording of transactions.
 
 [Table of Contents](#table-of-contents)

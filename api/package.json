@@ -19,7 +19,8 @@
   },
   "devDependencies": {
     "dotenv": "^4.0.0",
-    "nodemon": "^1.12.5"
+    "nodemon": "^1.12.5",
+    "now": "^9.2.7"
   },
   "scripts": {
     "dev": "nodemon server.js",
