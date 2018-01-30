@@ -2,13 +2,36 @@
 
 ![Tanto Logo](https://image.ibb.co/gHzsDb/logo.png "Logo Title Text")
 
+## Team
+
+[Mizuki Zenta](https://github.com/MizukiZ/)
+
+[Chy Meng](https://github.com/chymeng/)
+
+[Tomomi Oki](https://github.com/okichan/)
+
 ## Useful Links
 
-[Website Link](https://tanto.netlify.com/signin)
+[Website Links (React App)](https://tanto.netlify.com)
+
+* [Signin](https://tanto.netlify.com/signin)
+* [Signout](https://tanto.netlify.com/signup)
+* [Sales](https://tanto.netlify.com/sales)
+* [New sales](https://tanto.netlify.com/new-sales)
+* [Products](https://tanto.netlify.com/products)
+* [Customers](https://tanto.netlify.com/customers)
+* [Notifications](https://tanto.netlify.com/notifications)
+* [Daily reports](https://tanto.netlify.com/report-daily)
+* [Weekly reports](https://tanto.netlify.com/report-weekly)
+* [Customers traffic](https://tanto.netlify.com/customer-traffic)
+
+[Production api](https://tanto-api.now.sh)
 
 [Presentation Slides](https://docs.google.com/presentation/d/1__HwmAxxGbnhNuGW9O3zxrAPKJOJ2siq-zzJoENJaEM/edit#slide=id.p)
 
 [Documentation Link (includes minutes)](https://docs.google.com/document/d/1Cu55d0rctqWQf9sVHFZ376ZGLEOQhSpns6cviiiJxN8/edit?usp=sharing)
+
+[Client questionnaire](https://docs.google.com/document/d/1CGwHIicpuTjPQWmAArkpmS9gCCW1xLFc_WO_-To4Iss/edit?usp=gmail)
 
 ## Table of Contents
 
