@@ -1,42 +1,42 @@
-import React, { Component, Fragment } from "react";
-import "./css/App.css";
+import React, { Component, Fragment } from 'react'
+import './css/App.css'
 // import "./css/SalesForm.css";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect
-} from "react-router-dom";
-import SignInForm from "./components/SignInForm";
-import SignUpForm from "./components/SignUpForm";
-import ProductList from "./components/ProductList";
-import ProductFilter from "./components/ProductFilter";
-import ProductForm from "./components/ProductForm";
-import CustomerList from "./components/CustomerList";
-import SaleList from "./components/SaleList";
-import SalesFormV2 from "./components/SalesFormV2";
+} from 'react-router-dom'
+import SignInForm from './components/SignInForm'
+import SignUpForm from './components/SignUpForm'
+import ProductList from './components/ProductList'
+import ProductFilter from './components/ProductFilter'
+import ProductForm from './components/ProductForm'
+import CustomerList from './components/CustomerList'
+import SaleList from './components/SaleList'
+import SalesFormV2 from './components/SalesFormV2'
 
 // import SalesForm from "./components/SalesForm";
-import PrimaryNav from "./components/PrimaryNav";
-import SideBar from "./components/SideBar";
-import LinkButton from "./components/LinkButton";
-import CustomerForm from "./components/CustomerForm";
-import Home from "./components/Home";
-import CustomerTrafficList from "./components/CustomerTrafficList";
-import NotificationList from "./components/NotificationList";
-import DailyReport from "./components/DailyReport";
-import WeeklyReport from "./components/WeeklyReport";
+import PrimaryNav from './components/PrimaryNav'
+import SideBar from './components/SideBar'
+import LinkButton from './components/LinkButton'
+import CustomerForm from './components/CustomerForm'
+import Home from './components/Home'
+import CustomerTrafficList from './components/CustomerTrafficList'
+import NotificationList from './components/NotificationList'
+import DailyReport from './components/DailyReport'
+import WeeklyReport from './components/WeeklyReport'
 
-import Error from "./components/Error";
-import { signIn, signUp, signOutNow } from "./api/auth";
-import { getDecodedToken } from "./api/token";
+import Error from './components/Error'
+import { signIn, signUp, signOutNow } from './api/auth'
+import { getDecodedToken } from './api/token'
 import {
   listSales,
   deleteSale,
   updateSale,
   dailySales,
   monthRangeSales
-} from "./api/sales";
+} from './api/sales'
 
 import {
   dailyCustomerTraffics,
@@ -44,29 +44,29 @@ import {
   createCustomerTraffics,
   updateCustomerTraffic,
   deleteCustomerTraffics
-} from "./api/customerTraffics";
+} from './api/customerTraffics'
 
 import {
   listProducts,
   createProduct,
   updateProduct,
   deleteProduct
-} from "./api/products";
+} from './api/products'
 import {
   listFilteredCustomers,
   listCustomers,
   createCustomer,
   updateCustomer,
   deleteCustomer
-} from "./api/customers";
+} from './api/customers'
 import {
   listNotifications,
   updateNotifications,
   deleteNotifications
-} from "./api/notifications";
-import { ExportRawdata } from "./components/ExportRawdata";
-import axios from "axios";
-import moment from "moment";
+} from './api/notifications'
+import { ExportRawdata } from './components/ExportRawdata'
+import axios from 'axios'
+import moment from 'moment'
 
 class App extends Component {
   state = {
@@ -92,157 +92,157 @@ class App extends Component {
     chosenImage: null,
     sortedCustomers: null,
     editSale: null
-  };
+  }
 
   // for image uploading
   handleDrop = files => {
     // Push all the axios request promise into a single array
     const uploaders = files.map(file => {
       // Initial FormData
-      const formData = new FormData();
-      formData.append("file", file);
-      formData.append("tags", `codeinfuse, medium, gist`);
-      formData.append("upload_preset", "drfrsbsl"); // Replace the preset name with your own
-      formData.append("api_key", process.env.REACT_APP_CLOUDINARY_API_KEY); // Replace API key with your own Cloudinary key
-      formData.append("timestamp", (Date.now() / 1000) | 0);
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('tags', `codeinfuse, medium, gist`)
+      formData.append('upload_preset', 'drfrsbsl') // Replace the preset name with your own
+      formData.append('api_key', process.env.REACT_APP_CLOUDINARY_API_KEY) // Replace API key with your own Cloudinary key
+      formData.append('timestamp', (Date.now() / 1000) | 0)
 
       // Make an AJAX upload request using Axios (replace Cloudinary URL below with your own)
       return axios
         .post(process.env.REACT_APP_CLOUDINARY_ADDRESS, formData, {
-          headers: { "X-Requested-With": "XMLHttpRequest" }
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
         })
         .then(response => {
-          const data = response.data;
-          const fileURL = data.secure_url; // You should store this URL for future references in your app
-          this.setState({ chosenImage: fileURL });
-        });
-    });
+          const data = response.data
+          const fileURL = data.secure_url // You should store this URL for future references in your app
+          this.setState({ chosenImage: fileURL })
+        })
+    })
 
     // Once all the files are uploaded
     axios.all(uploaders).then(() => {
       // ... perform after upload is successful operation
-    });
-  };
+    })
+  }
 
   getPieChartChefData = () => {
-    const chartData = this.getDataCustomerPieChart(this.state.customerTraffics);
+    const chartData = this.getDataCustomerPieChart(this.state.customerTraffics)
     this.setState({
       pieChartChefData: {
-        labels: ["Chef", "Non Chef", "Unknown"],
+        labels: ['Chef', 'Non Chef', 'Unknown'],
         datasets: [
           {
-            backgroundColor: ["#2ecc71", "#e74c3c", "rgb(111, 107, 117)"],
+            backgroundColor: ['#2ecc71', '#e74c3c', 'rgb(111, 107, 117)'],
             data: chartData
           }
         ]
       }
-    });
-  };
+    })
+  }
 
   getPieChartOriginData = () => {
     const chartData = this.getDataCustomerOriginPieChart(
       this.state.customerTraffics
-    );
+    )
     this.setState({
       pieChartOriginData: {
         labels: [
-          "Facebook",
-          "Online search",
-          "Referral",
-          "Newspaper",
-          "Walk in",
-          "QT Hotel Guest",
-          "Return",
-          "unknown"
+          'Facebook',
+          'Online search',
+          'Referral',
+          'Newspaper',
+          'Walk in',
+          'QT Hotel Guest',
+          'Return',
+          'unknown'
         ],
         datasets: [
           {
             backgroundColor: [
-              "#2ecc71",
-              "#e74c3c",
-              "rgb(111, 107, 117)",
-              "rgb(23, 214, 240)",
-              "rgb(176, 210, 19)",
-              "rgb(209, 47, 215)",
-              "rgb(231, 126, 55)",
-              "rgb(70, 0, 249)"
+              '#2ecc71',
+              '#e74c3c',
+              'rgb(111, 107, 117)',
+              'rgb(23, 214, 240)',
+              'rgb(176, 210, 19)',
+              'rgb(209, 47, 215)',
+              'rgb(231, 126, 55)',
+              'rgb(70, 0, 249)'
             ],
             data: chartData
           }
         ]
       }
-    });
-  };
+    })
+  }
 
   // create array data for chef nonchef pie chart
   getDataCustomerPieChart = customersData => {
-    let CustomerPieChart = []; //[chef,nonChef,unknown]
+    let CustomerPieChart = [] //[chef,nonChef,unknown]
 
     let total = customersData
       .map(customerData => {
-        return customerData.number;
+        return customerData.number
       })
       .reduce((a, b) => {
-        return a + b;
-      }, 0);
+        return a + b
+      }, 0)
 
-    let chef = this.detectChef("true", customersData);
+    let chef = this.detectChef('true', customersData)
 
-    let nonChef = this.detectChef("false", customersData);
+    let nonChef = this.detectChef('false', customersData)
 
-    let unknown = total - chef - nonChef;
+    let unknown = total - chef - nonChef
 
-    CustomerPieChart.push(chef, nonChef, unknown);
-    return CustomerPieChart;
-  };
+    CustomerPieChart.push(chef, nonChef, unknown)
+    return CustomerPieChart
+  }
 
   detectChef = (type, data) => {
     return data
       .map(customerData => {
         if (customerData.isChef === type) {
-          return customerData.number;
+          return customerData.number
         } else {
-          return 0;
+          return 0
         }
       })
       .reduce((a, b) => {
-        return a + b;
-      }, 0);
-  };
+        return a + b
+      }, 0)
+  }
 
   detectOrigin = (type, data) => {
     return data
       .map(customerData => {
         if (customerData.origin === type) {
-          return customerData.number;
+          return customerData.number
         } else {
-          return 0;
+          return 0
         }
       })
       .reduce((a, b) => {
-        return a + b;
-      }, 0);
-  };
+        return a + b
+      }, 0)
+  }
 
   // create array data for chef origin pie chart
   getDataCustomerOriginPieChart = customersData => {
-    let CustomerOriginPieChart = []; //[chef,nonChef,unknown]
+    let CustomerOriginPieChart = [] //[chef,nonChef,unknown]
 
-    let faceBook = this.detectOrigin("Facebook", customersData);
+    let faceBook = this.detectOrigin('Facebook', customersData)
 
-    let onlineSearch = this.detectOrigin("OnlineSearch", customersData);
+    let onlineSearch = this.detectOrigin('OnlineSearch', customersData)
 
-    let referral = this.detectOrigin("Referral", customersData);
+    let referral = this.detectOrigin('Referral', customersData)
 
-    let newspaper = this.detectOrigin("Newspaper", customersData);
+    let newspaper = this.detectOrigin('Newspaper', customersData)
 
-    let walkIn = this.detectOrigin("WalkIn", customersData);
+    let walkIn = this.detectOrigin('WalkIn', customersData)
 
-    let hotelGuest = this.detectOrigin("HotelGuest", customersData);
+    let hotelGuest = this.detectOrigin('HotelGuest', customersData)
 
-    let returnCustomer = this.detectOrigin("Return", customersData);
+    let returnCustomer = this.detectOrigin('Return', customersData)
 
-    let unknown = this.detectOrigin("Unknown", customersData);
+    let unknown = this.detectOrigin('Unknown', customersData)
 
     CustomerOriginPieChart.push(
       faceBook,
@@ -253,238 +253,238 @@ class App extends Component {
       hotelGuest,
       returnCustomer,
       unknown
-    );
+    )
 
-    return CustomerOriginPieChart;
-  };
+    return CustomerOriginPieChart
+  }
 
   onSignIn = ({ email, password }) => {
     signIn({ email, password })
       .then(decodedToken => {
-        this.setState({ decodedToken });
+        this.setState({ decodedToken })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onSignUp = ({ email, password, userName }) => {
     signUp({ email, password, userName })
       .then(decodedToken => {
-        this.setState({ decodedToken });
+        this.setState({ decodedToken })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onSignOut = () => {
-    signOutNow();
-    this.setState({ decodedToken: null });
-  };
+    signOutNow()
+    this.setState({ decodedToken: null })
+  }
 
   onCreateProduct = productData => {
     createProduct(productData)
       .then(newProduct => {
-        window.location.href = "/products";
+        window.location.href = '/products'
         this.setState(prevState => {
           // Append to existing products array
-          const updatedProducts = prevState.products.concat(newProduct);
+          const updatedProducts = prevState.products.concat(newProduct)
           return {
             products: updatedProducts
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onDeleteProduct = id => {
     deleteProduct(id)
       .then(product => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onEditProduct = data => {
     updateProduct(data._id, data)
       .then(updatedProduct => {
-        window.location.href = "/products";
+        window.location.href = '/products'
         this.setState(prevState => {
           // Replace in existing products array
           const updatedProducts = prevState.products.map(product => {
             if (product._id === updatedProduct._id) {
-              return updatedProduct;
+              return updatedProduct
             } else {
-              return product;
+              return product
             }
-          });
+          })
           return {
             products: updatedProducts
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onProductFilter = query => {
     const matchProducts = this.state.products.filter(product => {
-      return product.category === query;
-    });
-    if (query !== "") {
-      this.setState({ filteredProducts: matchProducts });
+      return product.category === query
+    })
+    if (query !== '') {
+      this.setState({ filteredProducts: matchProducts })
     } else {
-      this.setState({ filteredProducts: this.state.products });
+      this.setState({ filteredProducts: this.state.products })
     }
-  };
+  }
 
   onCreateCustomer = customerData => {
     createCustomer(customerData)
       .then(newCustomer => {
-        window.location.href = "/customers";
+        window.location.href = '/customers'
         this.setState(prevState => {
           // Append to existing customers array
-          const updatedCustomers = prevState.customers.concat(newCustomer);
+          const updatedCustomers = prevState.customers.concat(newCustomer)
           return {
             customers: updatedCustomers
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onDeleteCustomer = id => {
     deleteCustomer(id)
       .then(customer => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onEditCustomer = data => {
     updateCustomer(data._id, data)
       .then(updatedCustomer => {
-        window.location.href = "/customers";
+        window.location.href = '/customers'
         this.setState(prevState => {
           // Replace in existing customers array
           const updatedCustomer = prevState.customers.map(customer => {
             if (customer._id === updatedCustomer._id) {
-              return updatedCustomer;
+              return updatedCustomer
             } else {
-              return customer;
+              return customer
             }
-          });
+          })
           return {
             customers: updatedCustomer
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   findProduct = id => {
-    const { products } = this.state;
+    const { products } = this.state
     var selectedProduct = products.filter(product => {
-      return product._id === id;
-    })[0];
-    return selectedProduct;
-  };
+      return product._id === id
+    })[0]
+    return selectedProduct
+  }
 
   onDeleteSale = id => {
     deleteSale(id)
       .then(sale => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onEditSale = data => {
-    debugger;
+    debugger
     updateSale(data._id, data)
       .then(updatedSale => {
-        window.location.href = "/sales";
+        window.location.href = '/sales'
         this.setState(prevState => {
           // Replace in existing products array
           const updatedSales = prevState.sales.map(sale => {
             if (sale._id === updatedSale._id) {
-              return updatedSale;
+              return updatedSale
             } else {
-              return sale;
+              return sale
             }
-          });
+          })
           return {
             sales: updatedSales
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   // onChange function for saleForm.js select menu
   onChangeTitle = title => {
-    const { products } = this.state;
+    const { products } = this.state
     const chosenProdut = products.filter(product => {
-      return product.title === title;
-    })[0];
-    this.setState({ productPrice: chosenProdut.price });
-  };
+      return product.title === title
+    })[0]
+    this.setState({ productPrice: chosenProdut.price })
+  }
 
   onChangePrice = e => {
-    const value = e.target.value;
-    this.setState({ productPrice: value });
-  };
+    const value = e.target.value
+    this.setState({ productPrice: value })
+  }
 
   onClickDelete = () => {
     deleteNotifications()
       .then(data => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        console.error(error.message);
-      });
-  };
+        console.error(error.message)
+      })
+  }
 
   onClickToggoleCheckedField = (id, data) => {
     updateNotifications(id, data)
       .then(data => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        console.error(error.message);
-      });
-  };
+        console.error(error.message)
+      })
+  }
   //for date picker
   onDate = event => {
-    this.setState({ date: event });
-    dailySales(event.format("YYYY-MM-DD")).then(dailySales => {
-      this.setState({ dailySales });
-    });
-    dailyCustomerTraffics(event.format("YYYY-MM-DD")).then(
+    this.setState({ date: event })
+    dailySales(event.format('YYYY-MM-DD')).then(dailySales => {
+      this.setState({ dailySales })
+    })
+    dailyCustomerTraffics(event.format('YYYY-MM-DD')).then(
       dailyCustomerTraffics => {
-        this.setState({ dailyCustomerTraffics });
+        this.setState({ dailyCustomerTraffics })
       }
-    );
-  };
+    )
+  }
 
   onChageRange = (type, range) => {
-    this.setState({ ["weekRange" + type]: range });
-  };
+    this.setState({ ['weekRange' + type]: range })
+  }
 
   // create customer Traffics
   onCreateCustomerTraffics = data => {
@@ -493,98 +493,98 @@ class App extends Component {
         // Append to existing products array
         const updatedProducts = prevState.customerTraffics.concat(
           newCustomerTraffic
-        );
+        )
         return {
           customerTraffics: updatedProducts
-        };
-      });
-      this.getPieChartChefData();
-      this.getPieChartOriginData();
-      dailySales(this.state.date.format("YYYY-MM-DD"))
+        }
+      })
+      this.getPieChartChefData()
+      this.getPieChartOriginData()
+      dailySales(this.state.date.format('YYYY-MM-DD'))
         .then(dailySales => {
-          this.setState({ dailySales });
+          this.setState({ dailySales })
         })
         .catch(error => {
-          console.error(error.message);
-        });
+          console.error(error.message)
+        })
 
-      dailyCustomerTraffics(this.state.date.format("YYYY-MM-DD"))
+      dailyCustomerTraffics(this.state.date.format('YYYY-MM-DD'))
         .then(dailyCustomerTraffics => {
-          this.setState({ dailyCustomerTraffics });
+          this.setState({ dailyCustomerTraffics })
         })
         .catch(error => {
-          console.error(error.message);
-        });
-      alert("New customer traffic has been created.");
-    });
-  };
+          console.error(error.message)
+        })
+      alert('New customer traffic has been created.')
+    })
+  }
 
   onDeleteCustomerTraffic = id => {
     deleteCustomerTraffics(id)
       .then(traffic => {
-        this.load();
+        this.load()
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onEditTraffic = data => {
     updateCustomerTraffic(data._id, data)
       .then(updatedTraffic => {
-        window.location.href = "/traffic";
+        window.location.href = '/traffic'
         this.setState(prevState => {
           // Replace in existing products array
           const updatedTraffic = prevState.traffics.map(traffic => {
             if (traffic._id === updatedTraffic._id) {
-              return updatedTraffic;
+              return updatedTraffic
             } else {
-              return traffic;
+              return traffic
             }
-          });
+          })
           return {
             traffics: updatedTraffic
-          };
-        });
+          }
+        })
       })
       .catch(error => {
-        this.setState({ error });
-      });
-  };
+        this.setState({ error })
+      })
+  }
 
   onImageReset = () => {
-    this.setState({ chosenImage: null });
-  };
+    this.setState({ chosenImage: null })
+  }
 
   multiplyNumbers(numberOne, numberTwo) {
-    return numberOne * numberTwo;
+    return numberOne * numberTwo
   }
 
   capitalizeWord(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+    return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
   }
 
   sortByKey(array, key) {
     return array.sort(function(a, b) {
-      var x = a[key];
-      var y = b[key];
-      return x < y ? 1 : x > y ? -1 : 0;
-    });
+      var x = a[key]
+      var y = b[key]
+      return x < y ? 1 : x > y ? -1 : 0
+    })
   }
 
   sortByName = query => {
-    listFilteredCustomers("name", query)
+    listFilteredCustomers('name', query)
       .then(sortedCustomers => {
-        this.setState({ sortedCustomers });
+        this.setState({ sortedCustomers })
       })
       .catch(error => {
-        console.error(error.message);
-      });
-  };
+        console.error(error.message)
+      })
+  }
 
   onChangeEditSale = data => {
-    this.setState({ editSale: data });
-  };
+    this.setState({ editSale: data })
+  }
 
   render() {
     const {
@@ -611,11 +611,11 @@ class App extends Component {
       chosenImage,
       sortedCustomers,
       editSale
-    } = this.state;
-    const signedIn = !!decodedToken;
+    } = this.state
+    const signedIn = !!decodedToken
 
     const requireAuth = render => props =>
-      !signedIn ? <Redirect to="/signin" /> : render(props);
+      !signedIn ? <Redirect to="/signin" /> : render(props)
 
     return (
       <Router>
@@ -627,7 +627,7 @@ class App extends Component {
                 signedIn={signedIn}
                 signOut={this.onSignOut}
                 currentUser={this.state.decodedToken}
-                notificationCount={notifications ? notifications.length : "0"}
+                notificationCount={notifications ? notifications.length : '0'}
               />
             </header>
           )}
@@ -704,11 +704,11 @@ class App extends Component {
                         <div className="mb-3">
                           <p>Email: {decodedToken.email}</p>
                           <p>
-                            Signed in at:{" "}
+                            Signed in at:{' '}
                             {new Date(decodedToken.iat * 1000).toISOString()}
                           </p>
                           <p>
-                            Expire at:{" "}
+                            Expire at:{' '}
                             {new Date(decodedToken.exp * 1000).toISOString()}
                           </p>
                         </div>
@@ -893,69 +893,69 @@ class App extends Component {
           </div>
         </div>
       </Router>
-    );
+    )
   }
 
   load() {
     const saveError = error => {
-      this.setState({ error });
-    };
+      this.setState({ error })
+    }
 
     // Load for everyone
     listProducts()
       .then(products => {
-        this.setState({ products, filteredProducts: products });
+        this.setState({ products, filteredProducts: products })
       })
-      .catch(saveError);
+      .catch(saveError)
 
     listCustomers()
       .then(customers => {
-        this.setState({ customers });
-        this.setState({ sortedCustomers: customers });
+        this.setState({ customers })
+        this.setState({ sortedCustomers: customers })
       })
-      .catch(saveError);
+      .catch(saveError)
 
     listSales()
       .then(sales => {
-        this.setState({ sales });
+        this.setState({ sales })
       })
-      .catch(saveError);
+      .catch(saveError)
 
     listNotifications()
       .then(notifications => {
-        this.setState({ notifications });
+        this.setState({ notifications })
       })
-      .catch(saveError);
+      .catch(saveError)
 
-    dailySales(this.state.date.format("YYYY-MM-DD"))
+    dailySales(this.state.date.format('YYYY-MM-DD'))
       .then(dailySales => {
-        this.setState({ dailySales });
+        this.setState({ dailySales })
       })
-      .catch(saveError);
+      .catch(saveError)
 
-    dailyCustomerTraffics(this.state.date.format("YYYY-MM-DD"))
+    dailyCustomerTraffics(this.state.date.format('YYYY-MM-DD'))
       .then(dailyCustomerTraffics => {
-        this.setState({ dailyCustomerTraffics });
+        this.setState({ dailyCustomerTraffics })
       })
-      .catch(saveError);
+      .catch(saveError)
 
     // default a half year
     monthRangeSales(6)
       .then(monthRangeSales => {
-        this.setState({ monthRangeSales });
+        this.setState({ monthRangeSales })
       })
-      .catch(saveError);
+      .catch(saveError)
 
     listCustomerTraffics()
       .then(customerTraffics => {
-        this.setState({ customerTraffics });
-        this.getPieChartChefData();
-        this.getPieChartOriginData();
+        this.setState({ customerTraffics })
+        this.getPieChartChefData()
+        this.getPieChartOriginData()
       })
-      .catch(saveError);
+      .catch(saveError)
 
-    const { decodedToken } = this.state;
-    const signedIn = !!decodedToken;
+    const { decodedToken } = this.state
+    const signedIn = !!decodedToken
 
     if (signedIn) {
       // Load only for signed in users
@@ -966,7 +966,7 @@ class App extends Component {
 
   // When this App first appears on screen
   componentDidMount() {
-    this.load();
+    this.load()
   }
 
   // When state changes
@@ -974,17 +974,17 @@ class App extends Component {
     if (this.state.error !== null) {
       // reset error
       setTimeout(() => {
-        this.setState({ error: null });
-      }, 4000);
+        this.setState({ error: null })
+      }, 4000)
     }
     // If just signed in, signed up, or signed out,
     // then the token will have changed
 
     if (this.state.decodedToken !== prevState.decodedToken) {
-      this.load();
+      this.load()
     }
   }
 }
 
-export default App;
-CustomerList;
+export default App
+CustomerList

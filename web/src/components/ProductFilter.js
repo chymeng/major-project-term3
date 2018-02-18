@@ -1,16 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react'
 const arr = [
-  "All",
-  "Wa-Bocho",
-  "Damascus",
-  "Carbon Steel",
-  "Inox Steel",
-  "SP Inox",
-  "Saya",
-  "Hayate",
-  "Stone",
-  "Sharpening"
-];
+  'All',
+  'Wa-Bocho',
+  'Damascus',
+  'Carbon Steel',
+  'Inox Steel',
+  'SP Inox',
+  'Saya',
+  'Hayate',
+  'Stone',
+  'Sharpening'
+]
 
 const ProductFilter = ({ prodCategory }) => {
   return (
@@ -29,11 +29,11 @@ const ProductFilter = ({ prodCategory }) => {
               htmlFor="inlineRadio1"
               key={pick}
               onClick={e => {
-                const category = e.target.id;
-                if (category !== "All") {
-                  prodCategory(category);
+                const category = e.target.id
+                if (category !== 'All') {
+                  prodCategory(category)
                 } else {
-                  prodCategory("");
+                  prodCategory('')
                 }
               }}
             >
@@ -46,11 +46,11 @@ const ProductFilter = ({ prodCategory }) => {
               />
               {pick}
             </label>
-          );
+          )
         })}
       </div>
     </Fragment>
-  );
-};
+  )
+}
 
-export default ProductFilter;
+export default ProductFilter

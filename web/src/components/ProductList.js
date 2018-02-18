@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
-import noImage from "../noImage.png";
-import Dropzone from "react-dropzone";
-import Incrementer from "./Incrementer";
+import React, { Fragment } from 'react'
+import noImage from '../noImage.png'
+import Dropzone from 'react-dropzone'
+import Incrementer from './Incrementer'
 
 function ProductList({
   filteredProducts,
@@ -26,7 +26,7 @@ function ProductList({
                 <th scope="col" />
               </tr>
             </thead>
-
+            {console.log(filteredProducts)}
             {filteredProducts.map(product => {
               return (
                 <tbody key={product._id}>
@@ -111,19 +111,19 @@ function ProductList({
                                 id={`editForm-${product.code}`}
                                 onSubmit={event => {
                                   // Prevent old-school form submission
-                                  event.preventDefault();
+                                  event.preventDefault()
 
-                                  const form = event.target;
-                                  const elements = form.elements; // Allows looking up fields using their 'name' attributes
+                                  const form = event.target
+                                  const elements = form.elements // Allows looking up fields using their 'name' attributes
 
                                   // Get entered values from fields
-                                  const _id = elements._id.value;
-                                  const category = elements.category.value;
-                                  const code = elements.code.value;
-                                  const title = elements.title.value;
-                                  const price = elements.price.value;
-                                  const stock = elements.stock.value;
-                                  const image = chosenImage;
+                                  const _id = elements._id.value
+                                  const category = elements.category.value
+                                  const code = elements.code.value
+                                  const title = elements.title.value
+                                  const price = elements.price.value
+                                  const stock = elements.stock.value
+                                  const image = chosenImage
 
                                   onEditedProductSubmit({
                                     _id,
@@ -133,7 +133,7 @@ function ProductList({
                                     price,
                                     stock,
                                     image
-                                  });
+                                  })
                                 }}
                               >
                                 <div className="form-group">
@@ -205,7 +205,7 @@ function ProductList({
                                         src={chosenImage}
                                         height="125"
                                         width="100%"
-                                        style={{ opacity: "0.6" }}
+                                        style={{ opacity: '0.6' }}
                                         alt="product"
                                       />
                                     </div>
@@ -216,11 +216,11 @@ function ProductList({
                                           src={product.image}
                                           height="125"
                                           width="100%"
-                                          style={{ opacity: "0.6" }}
+                                          style={{ opacity: '0.6' }}
                                           alt="product"
                                         />
                                       ) : (
-                                        "Drop your file or click here to upload"
+                                        'Drop your file or click here to upload'
                                       )}
                                     </p>
                                   )}
@@ -289,7 +289,7 @@ function ProductList({
                                 type="button"
                                 className="btn btn-danger "
                                 onClick={() => {
-                                  deleteProduct(product._id);
+                                  deleteProduct(product._id)
                                 }}
                                 data-dismiss="modal"
                               >
@@ -310,7 +310,7 @@ function ProductList({
                         title="Edit"
                         onClick={() => {
                           //reset chosenImage
-                          onImageReset();
+                          onImageReset()
                         }}
                       />
 
@@ -321,11 +321,11 @@ function ProductList({
                           id="trash"
                           data-toggle="modal"
                           data-target={`#modaldelete-${product.code}`}
-                          style={{ cursor: "pointer" }}
+                          style={{ cursor: 'pointer' }}
                           title="Delete"
                         />
                       ) : (
-                        ""
+                        ''
                       )}
                     </td>
                   </tr>
@@ -343,7 +343,7 @@ function ProductList({
                               {product.image ? (
                                 <img
                                   src={product.image}
-                                  style={{ width: "100%" }}
+                                  style={{ width: '100%' }}
                                   alt="product"
                                 />
                               ) : (
@@ -363,13 +363,13 @@ function ProductList({
                   </tr>
                   {/* collapse end */}
                 </tbody>
-              );
+              )
             })}
           </table>
         </section>
       )}
     </Fragment>
-  );
+  )
 }
 
-export default ProductList;
+export default ProductList

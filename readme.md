@@ -1,6 +1,6 @@
 # Tanto Management System
 
-![Tanto Logo](https://image.ibb.co/gHzsDb/logo.png "Logo Title Text")
+![Tanto Logo](https://image.ibb.co/gHzsDb/logo.png 'Logo Title Text')
 
 ## Team
 
@@ -12,7 +12,7 @@
 
 ## Useful Links
 
-[Website Links (React App)](https://tanto.netlify.com)
+[Website Links (React App)](https://mct-project-t3-demo.netlify.com)
 
 * [Signin](https://tanto.netlify.com/signin)
 * [Signout](https://tanto.netlify.com/signup)
@@ -96,7 +96,7 @@ Our user stories in regards to the application can be view on our public board o
 
 ## User Flow Diagrams
 
-![User Flow Diagram](https://image.ibb.co/ghtNeG/Tanto_workflow_diagram.png "User Flow Diagram")
+![User Flow Diagram](https://image.ibb.co/ghtNeG/Tanto_workflow_diagram.png 'User Flow Diagram')
 
 [Table of Contents](#table-of-contents)
 
@@ -110,7 +110,7 @@ For our wireframes and initial designs, this can be found in the link about in o
 
 ## Database design
 
-![User Flow Diagram](https://image.ibb.co/do3y6w/db.png "Database Design")
+![User Flow Diagram](https://image.ibb.co/do3y6w/db.png 'Database Design')
 
 [Table of Contents](#table-of-contents)
 
